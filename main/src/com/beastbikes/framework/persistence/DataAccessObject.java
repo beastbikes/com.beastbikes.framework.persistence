@@ -59,7 +59,7 @@ public interface DataAccessObject<T extends PersistentObject> {
 	 *            The objects to be inserted into storage
 	 * @throws PersistenceException
 	 */
-	public void insert(T... pos) throws PersistenceException;
+	public void create(T... pos) throws PersistenceException;
 
 	/**
 	 * Save the specified objects into storage
@@ -68,7 +68,7 @@ public interface DataAccessObject<T extends PersistentObject> {
 	 *            The objects to be inserted into storage
 	 * @throws PersistenceException
 	 */
-	public void insert(List<T> pos) throws PersistenceException;
+	public void create(List<T> pos) throws PersistenceException;
 
 	/**
 	 * Update the specified objects which has already exist in storage
@@ -87,6 +87,24 @@ public interface DataAccessObject<T extends PersistentObject> {
 	 * @throws PersistenceException
 	 */
 	public void update(List<T> pos) throws PersistenceException;
+
+	/**
+	 * Save or update the specified objects
+	 * 
+	 * @param pos
+	 *            The object to be saved or updated
+	 * @throws PersistenceException
+	 */
+	public void createOrUpdate(T... pos) throws PersistenceException;
+
+	/**
+	 * Save or update the specified objects
+	 * 
+	 * @param pos
+	 *            The object to be saved or updated
+	 * @throws PersistenceException
+	 */
+	public void createOrUpdate(List<T> pos) throws PersistenceException;
 
 	/**
 	 * Delete the specified objects which has already exist in storage
