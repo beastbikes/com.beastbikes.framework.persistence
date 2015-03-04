@@ -22,14 +22,4 @@ public interface UpgradeHandler extends Comparable<UpgradeHandler> {
 	 */
 	public int getTargetVersion();
 
-	/**
-	 * Upgrade from {@code oldVersion} to {@code newVersion}
-	 * 
-	 * @param oldVersion
-	 *            The old version
-	 * @param newVersion
-	 *            The new version
-	 */
-	public void upgrade(int oldVersion, int newVersion);
-
 }
