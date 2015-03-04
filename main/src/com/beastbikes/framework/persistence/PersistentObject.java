@@ -16,6 +16,6 @@ public interface PersistentObject extends Serializable {
 	 * 
 	 * @return the unique identifier
 	 */
-	public Serializable getId();
+	public String getId();
 
 }
