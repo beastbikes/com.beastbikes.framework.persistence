@@ -62,6 +62,15 @@ public interface DataAccessObject<T extends PersistentObject> {
 	public void insert(T... pos) throws PersistenceException;
 
 	/**
+	 * Save the specified objects into storage
+	 * 
+	 * @param pos
+	 *            The objects to be inserted into storage
+	 * @throws PersistenceException
+	 */
+	public void insert(List<T> pos) throws PersistenceException;
+
+	/**
 	 * Update the specified objects which has already exist in storage
 	 * 
 	 * @param pos
@@ -71,6 +80,15 @@ public interface DataAccessObject<T extends PersistentObject> {
 	public void update(T... pos) throws PersistenceException;
 
 	/**
+	 * Update the specified objects which has already exist in storage
+	 * 
+	 * @param pos
+	 *            The objects to be updated
+	 * @throws PersistenceException
+	 */
+	public void update(List<T> pos) throws PersistenceException;
+
+	/**
 	 * Delete the specified objects which has already exist in storage
 	 * 
 	 * @param pos
@@ -78,6 +96,15 @@ public interface DataAccessObject<T extends PersistentObject> {
 	 * @throws PersistenceException
 	 */
 	public void delete(T... pos) throws PersistenceException;
+
+	/**
+	 * Delete the specified objects which has already exist in storage
+	 * 
+	 * @param pos
+	 *            The object to be deleted
+	 * @throws PersistenceException
+	 */
+	public void delete(List<T> pos) throws PersistenceException;
 
 	/**
 	 * Delete the persistent object with specified ids
