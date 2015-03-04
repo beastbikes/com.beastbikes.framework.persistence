@@ -1,7 +1,6 @@
 package com.beastbikes.framework.persistence;
 
 import java.io.Serializable;
-import java.sql.ResultSet;
 import java.util.List;
 
 /**
@@ -75,17 +74,26 @@ public interface DataAccessObject<T extends PersistentObject> {
 	public void delete(Serializable id) throws PersistenceException;
 
 	/**
-	 * Query data set with the specified SQL
+	 * Test whether the specified persistent object exists or not
 	 * 
-	 * @param sql
-	 *            The query SQL
-	 * @param args
-	 *            The arguments of the specified SQL
-	 * @return The data set
+	 * @param po
+	 *            The object to be tested
+	 * @return True if only the specified persistent object already exists, or
+	 *         false is returned
 	 * @throws PersistenceException
 	 */
-	public ResultSet query(String sql, String... args)
-			throws PersistenceException;
+	public boolean exists(T po) throws PersistenceException;
+
+	/**
+	 * Test whether a persistent object with the specified id exists or not
+	 * 
+	 * @param po
+	 *            The object to be tested
+	 * @return True if only a persistent object with the specified id already
+	 *         exists, or false is returned
+	 * @throws PersistenceException
+	 */
+	public boolean exists(Serializable id) throws PersistenceException;
 
 	/**
 	 * Execute raw SQL with the specified arguments
