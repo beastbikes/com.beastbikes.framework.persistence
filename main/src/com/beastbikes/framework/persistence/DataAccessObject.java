@@ -2,6 +2,7 @@ package com.beastbikes.framework.persistence;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.concurrent.Callable;
 
 /**
  * {@link DataAccessObject} interface is used for persistent data accessing
@@ -22,6 +23,19 @@ public interface DataAccessObject<T extends PersistentObject> {
 	public long count() throws PersistenceException;
 
 	/**
+	 * Returns the number of rows with the specified condition
+	 * 
+	 * @param clauses
+	 *            The condition clauses
+	 * @param args
+	 *            The arguments of clauses
+	 * @return the number of rows
+	 * @throws PersistenceException
+	 */
+	public long count(String clauses, String... args)
+			throws PersistenceException;
+
+	/**
 	 * Returns the persistent object with the specified id
 	 * 
 	 * @param id
@@ -39,39 +53,39 @@ public interface DataAccessObject<T extends PersistentObject> {
 	public List<T> getAll() throws PersistenceException;
 
 	/**
-	 * Save the specified object into storage
+	 * Save the specified objects into storage
 	 * 
-	 * @param po
-	 *            The object to be inserted into storage
+	 * @param pos
+	 *            The objects to be inserted into storage
 	 * @throws PersistenceException
 	 */
-	public void insert(T po) throws PersistenceException;
+	public void insert(T... pos) throws PersistenceException;
 
 	/**
-	 * Update the specified object which has already exist in storage
+	 * Update the specified objects which has already exist in storage
 	 * 
-	 * @param po
-	 *            The object to be updated
+	 * @param pos
+	 *            The objects to be updated
 	 * @throws PersistenceException
 	 */
-	public void update(T po) throws PersistenceException;
+	public void update(T... pos) throws PersistenceException;
 
 	/**
-	 * Delete the specified object which has already exist in storage
+	 * Delete the specified objects which has already exist in storage
 	 * 
-	 * @param po
+	 * @param pos
 	 *            The object to be deleted
 	 * @throws PersistenceException
 	 */
-	public void delete(T po) throws PersistenceException;
+	public void delete(T... pos) throws PersistenceException;
 
 	/**
-	 * Delete the persistent object with specified id
+	 * Delete the persistent object with specified ids
 	 * 
-	 * @param id
+	 * @param ids
 	 * @throws PersistenceException
 	 */
-	public void delete(Serializable id) throws PersistenceException;
+	public void delete(Serializable... ids) throws PersistenceException;
 
 	/**
 	 * Test whether the specified persistent object exists or not
@@ -105,6 +119,16 @@ public interface DataAccessObject<T extends PersistentObject> {
 	 * @return
 	 * @throws PersistenceException
 	 */
-	public void execute(String sql, Object... args) throws PersistenceException;
+	public void execute(String sql, String... args) throws PersistenceException;
+
+	/**
+	 * Execute the specified transaction
+	 * 
+	 * @param transaction
+	 *            A transaction
+	 * @return
+	 * @throws PersistenceException
+	 */
+	public <V> V execute(Callable<V> transaction) throws PersistenceException;
 
 }
