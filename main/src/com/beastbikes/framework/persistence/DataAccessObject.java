@@ -1,6 +1,5 @@
 package com.beastbikes.framework.persistence;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.concurrent.Callable;
 
@@ -42,7 +41,7 @@ public interface DataAccessObject<T extends PersistentObject> {
 	 * @return
 	 * @throws PersistenceException
 	 */
-	public T get(Serializable id) throws PersistenceException;
+	public T get(String id) throws PersistenceException;
 
 	/**
 	 * Returns all persistent objects
@@ -130,7 +129,7 @@ public interface DataAccessObject<T extends PersistentObject> {
 	 * @param ids
 	 * @throws PersistenceException
 	 */
-	public void delete(Serializable... ids) throws PersistenceException;
+	public void delete(String... ids) throws PersistenceException;
 
 	/**
 	 * Test whether the specified persistent object exists or not
@@ -152,7 +151,7 @@ public interface DataAccessObject<T extends PersistentObject> {
 	 *         exists, or false is returned
 	 * @throws PersistenceException
 	 */
-	public boolean exists(Serializable id) throws PersistenceException;
+	public boolean exists(String id) throws PersistenceException;
 
 	/**
 	 * Execute raw SQL with the specified arguments
